@@ -26,7 +26,6 @@ html {
 
 body {
     min-height: 100vh;
-    min-width: 100vw;
 }
 
 .container {
@@ -111,6 +110,7 @@ body {
     align-items: center;
     gap: 7rem;
     padding: 0 3rem;
+    margin-bottom: 5rem;
 }
 
 /* Image Gallery */
@@ -142,8 +142,8 @@ body {
 }
 
 .gallery .thumb-list div {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 90px;
+    max-height: 90px;
     margin: 0 2px;
 }
 
@@ -166,6 +166,73 @@ body {
     border: 2px solid var(--Orange);
     border-radius: 0.5rem;
     margin: 0;
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 5;
+    background-color: var(--Black-with-opacity);
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox .gallery {
+    max-width: 400px;
+}
+
+.lightbox .main-image {
+    position: relative;
+}
+
+.lightbox .icon-prev, .lightbox .icon-next {
+    position: absolute;
+    background-color: var(--White);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.lightbox .icon-prev {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.lightbox .icon-next {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.lightbox .icon-prev:hover, .lightbox .icon-next:hover {
+    fill: var(--Orange);
+}
+
+.lightbox .icon-close {
+    position: absolute;
+    right: 0;
+    top: -2.5rem;
+}
+
+.lightbox .icon-close {
+    fill: var(--White);
+    cursor: pointer;
+}
+
+.lightbox .icon-close:hover {
+    fill: var(--Orange);
 }
 
 /* Content */

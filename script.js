@@ -92,3 +92,114 @@ nextIcon.addEventListener("click", () => {
 closeIcon.addEventListener("click", () => {
     lightbox.classList.remove("active");
 });
+
+
+// Cart
+const countEL = document.querySelector(".count");
+const minusBtn = document.querySelector(".minus-btn");
+const plusBtn = document.querySelector(".plus-btn");
+const cartIcon = document.querySelector(".cart-icon");
+const cartCount = document.querySelector(".cart-count");
+const cartContainer = document.querySelector(".cart-container");
+const addToCartBtn = document.querySelector(".add-to-cart-btn");
+const cartItems = document.querySelector(".cart-items");
+const checkout = document.querySelector(".checkout");
+
+let count = 0;
+let totalQty = 0;
+
+function updateCount(newCount) {
+    count = newCount;
+    countEL.textContent = count;
+}
+
+minusBtn.addEventListener("click", () => {
+    if (count > 0) {
+        updateCount(count - 1);
+    }
+});
+
+plusBtn.addEventListener("click", () => {
+    updateCount(count + 1);
+});
+
+
+cartIcon.addEventListener("click", () => {
+    cartContainer.classList.toggle("active");
+});
+
+cartCount.addEventListener("click", () => {
+    cartContainer.classList.toggle("active");
+});
+
+
+function updateTotalQty() {
+    const cartItemsList = document.querySelectorAll(".cart-item");
+    totalQty = 0;
+    cartItemsList.forEach((item) => {
+        totalQty += parseInt(item.dataset.quantity)
+    });
+
+    cartCount.textContent = totalQty;
+}
+
+function removeItemFromCart(cartItem) {
+    cartItem.remove();
+    updateTotalQty();
+
+    if (cartItems.children.length === 1) {
+        cartItems.classList.add("empty");
+        checkout.classList.add("empty");
+    }
+}
+
+function addItemToCart(name, price, imgSrc) {
+    const totalPrice = price * count;
+
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
+    cartItem.dataset.quantity = count;
+    cartItem.innerHTML = `
+        <img class="product-img" src="${imgSrc}" alt="${name}"/>
+        <div class="item-details">
+            <div>${name}</div>
+            <div>
+                <p>
+                    ${price.toFixed(2)} x ${count}
+                    <span class="total-price">${totalPrice.toFixed(2)}</span>
+                </p>
+            </div>
+        </div>
+        <button class="delete-item">
+            <img src="images/icon-delete.svg" alt=""/>
+        </button>
+    `
+
+    cartItems.appendChild(cartItem);
+    updateTotalQty();
+
+    if (cartItems.classList.contains("empty")) {
+        cartItems.classList.remove("empty");
+        checkout.classList.remove("empty");
+    }
+
+    //Delete button to remove an item from cart
+    const deleteBtn = cartItem.querySelector(".delete-item");
+    deleteBtn.addEventListener("click", (e) => {
+        const targetItem = e.target.closest(".cart-item");
+        removeItemFromCart(targetItem);
+    });
+}
+
+addToCartBtn.addEventListener("click", () => {
+    if (count === 0) return;
+
+    const productName = document.querySelector(".main .content .product-name").textContent;
+    const productPriceEl = document.querySelector(".main .content .current-price");
+    const productPrice = parseFloat(productPriceEl.textContent.replace("$", ""));
+    const productImage = document.querySelector(".default.gallery .main-image img").getAttribute("src");
+
+    addItemToCart(productName, productPrice, productImage);
+
+    updateCount(0);
+});

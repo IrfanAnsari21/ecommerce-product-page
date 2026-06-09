@@ -347,7 +347,7 @@ body {
     position: absolute;
     background-color: var(--White);
     width: 360px;
-    min-height: 260px;
+    min-height: 250px;
     box-shadow: 0 7px 30px 0 rgba(100, 100, 111, 0.2);
     border-radius: 1rem;
     top: 3rem;
@@ -418,6 +418,29 @@ body {
     align-items: center;
     font-size: 12px;
     font-weight: 700;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--Dark-grayish-blue);
+}
+
+.cart-item .product-img {
+    height: 50px;
+    border-radius: 0.3rem;
+}
+
+.cart-item .total-price {
+    color: var(--Black);
+    font-weight: 700;
+}
+
+.delete-item {
+    border: none;
+    background: none;
 }
 
 button {

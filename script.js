@@ -91,4 +91,4 @@ nextIcon.addEventListener("click", () => {
 
 closeIcon.addEventListener("click", () => {
     lightbox.classList.remove("active");
-})
+});

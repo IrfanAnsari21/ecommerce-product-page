@@ -150,7 +150,7 @@ body {
     cursor: pointer;
 }
 
-.gallery .thumb-list div img:hover{
+.gallery .thumb-list div img:hover {
     opacity: 50%;
 }
 
@@ -167,7 +167,7 @@ body {
 /* Lightbox */
 .lightbox {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
@@ -190,7 +190,8 @@ body {
     position: relative;
 }
 
-.lightbox .icon-prev, .lightbox .icon-next {
+.lightbox .icon-prev,
+.lightbox .icon-next {
     position: absolute;
     background-color: var(--White);
     width: 50px;
@@ -206,13 +207,15 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
 .lightbox .icon-next {
     top: 50%;
     right: 0;
     transform: translate(50%, -50%);
 }
 
-.lightbox .icon-prev:hover, .lightbox .icon-next:hover {
+.lightbox .icon-prev:hover,
+.lightbox .icon-next:hover {
     fill: var(--Orange);
 }
 
@@ -232,7 +235,7 @@ body {
 }
 
 /* Content */
-.content{
+.content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -283,6 +286,7 @@ body {
     border-radius: 0.4rem;
     font-weight: 500;
 }
+
 .price-info .prev-price {
     color: var(--Dark-grayish-blue);
     font-weight: 600;
@@ -301,7 +305,7 @@ body {
     justify-content: space-between;
     background-color: var(--Light-grayish-blue);
     max-width: 150px;
-    height: 3rem;
+    height: 3.5rem;
     width: 100%;
     padding: 0 1rem;
     border-radius: 0.5rem;
@@ -325,7 +329,7 @@ body {
     justify-content: center;
     gap: 1rem;
     width: 100%;
-    height: 3rem;
+    height: 3.5rem;
     background-color: var(--Orange);
     color: var(--Very-dark-blue);
     border: none;
@@ -352,6 +356,7 @@ body {
     border-radius: 1rem;
     top: 3rem;
     right: -6rem;
+    z-index: 20;
     display: none;
 }
 
@@ -452,12 +457,27 @@ button:hover {
     opacity: 50%;
 }
 
+
+/* ---------- Tablet Responsive ---------- */
+@media screen and (max-width: 1024px) {
+    .main {
+        gap: 3rem;
+        padding: 0 1rem;
+    }
+}
+
 /* ---------- Mobile Responsive ---------- */
 @media screen and (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+
+
     /* Navbar */
     .navbar {
         border-bottom: none;
-        padding: 0.5rem 0;
+        padding: 0.7rem 1rem;
+        margin-bottom: 0;
     }
 
     .nav-first .menu-icon,
@@ -501,7 +521,7 @@ button:hover {
         width: 100vw;
         height: 100vh;
         display: block;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         z-index: 9;
@@ -511,6 +531,7 @@ button:hover {
         font-weight: 700;
         color: var(--Black);
     }
+
     .nav-links a::after {
         transition: none;
     }
@@ -523,13 +544,101 @@ button:hover {
         gap: 1rem;
     }
 
-    .nav-second .cart img {
-        width: 18px;
-        height: 18px;
+    .nav-second .avatar img {
+        width: 30px;
+        height: 30px;
     }
 
-    .nav-second .avatar img {
-        width: 2rem;
-        height: 2rem;
+    /* Main */
+    .main {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0;
+    }
+
+    .main .default {
+        display: none;
+    }
+
+    .lightbox {
+        display: flex;
+        position: relative;
+        height: auto;
+        width: 100vw;
+        background: none;
+    }
+
+    .lightbox .gallery {
+        max-width: 100%;
+    }
+
+    .main .thumb-list {
+        display: none;
+    }
+
+    .main .icon-prev {
+        left: 35px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .main .icon-next {
+        right: 35px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .gallery .main-image img.active {
+        max-width: none;
+        max-height: none;
+        width: 100vw;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .content {
+        padding: 0 1rem;
+    }
+
+    .content .company-name {
+        margin-bottom: 0.5rem;
+    }
+
+    .content .product-name {
+        font-size: 2rem;
+        line-height: 2.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .content .product-description {
+        line-height: 1.5rem;
+    }
+
+    .price-info {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .price-info .current-price {
+        margin-bottom: 0;
+    }
+
+    .add-to-cart-container {
+        flex-direction: column;
+    }
+
+    .add-to-cart-container .counter {
+        max-width: 100%;
+    }
+
+    .add-to-cart-container .add-to-cart-btn {
+        box-shadow: 0 10px 30px -6px rgba(250, 100, 0, 0.5);
+    }
+
+    .cart-container {
+        top: 3rem;
+        right: -3.5rem;
     }
 }

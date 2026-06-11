@@ -1,31 +1,31 @@
 // ----- Navbar -----
-const menuBtn = document.querySelector(".menu-icon");
-const closeMenu = document.querySelector(".close-icon");
+const openMenu = document.querySelector(".open-menu");
+const closeMenu = document.querySelector(".close-menu");
 const navLinks = document.querySelector(".nav-links");
 const backdrop = document.querySelector(".backdrop");
 
-menuBtn.addEventListener("click", () => {
-    navLinks.style.left = 0;
-    navLinks.style.opacity = 1;
+openMenu.addEventListener("click", () => {
+    navLinks.classList.add("active");
     backdrop.classList.add("active");
+    openMenu.setAttribute("aria-expanded", "true");
 });
 
 closeMenu.addEventListener("click", () => {
-    navLinks.style.left = "-200px";
-    navLinks.style.opacity = 0;
+    navLinks.classList.remove("active");
     backdrop.classList.remove("active");
+    openMenu.setAttribute("aria-expanded", "false");
 });
 
 backdrop.addEventListener("click", () => {
-    navLinks.style.left = "-200px";
-    navLinks.style.opacity = 0;
+    navLinks.classList.remove("active");
     backdrop.classList.remove("active");
+    openMenu.setAttribute("aria-expanded", "false");
 });
 
 
 // ----- Gallery -----
 const mainImages = document.querySelectorAll(".default .main-image img");
-const thumbnails = document.querySelectorAll(".default .thumb-list div");
+const thumbnails = document.querySelectorAll(".default .thumb-list button");
 
 thumbnails.forEach((thumb, index) => {
     thumb.addEventListener("click", () => {
@@ -43,10 +43,12 @@ function changeImage(index, mainImages, thumbnails) {
 
     thumbnails.forEach((thumb) => {
         thumb.classList.remove("active");
+        thumb.removeAttribute("aria-current");
     });
 
     mainImages[index].classList.add("active");
     thumbnails[index].classList.add("active");
+    thumbnails[index].setAttribute("aria-current", "true");
 
     currentIndex = index;
 };
@@ -55,7 +57,7 @@ function changeImage(index, mainImages, thumbnails) {
 //----- Lightbox -----
 const lightbox = document.querySelector(".lightbox");
 const lightboxMainImages = document.querySelectorAll(".lightbox .main-image img");
-const lightboxThumbnails = document.querySelectorAll(".lightbox .thumb-list div");
+const lightboxThumbnails = document.querySelectorAll(".lightbox .thumb-list button");
 const closeIcon = document.querySelector(".lightbox .icon-close");
 const prevIcon = document.querySelector(".lightbox .icon-prev");
 const nextIcon = document.querySelector(".lightbox .icon-next");
@@ -98,7 +100,7 @@ closeIcon.addEventListener("click", () => {
 const countEL = document.querySelector(".count");
 const minusBtn = document.querySelector(".minus-btn");
 const plusBtn = document.querySelector(".plus-btn");
-const cartIcon = document.querySelector(".cart-icon");
+const cartBtn = document.querySelector(".cart-btn");
 const cartCount = document.querySelector(".cart-count");
 const cartContainer = document.querySelector(".cart-container");
 const addToCartBtn = document.querySelector(".add-to-cart-btn");
@@ -124,12 +126,14 @@ plusBtn.addEventListener("click", () => {
 });
 
 
-cartIcon.addEventListener("click", () => {
-    cartContainer.classList.toggle("active");
-});
-
-cartCount.addEventListener("click", () => {
-    cartContainer.classList.toggle("active");
+cartBtn.addEventListener("click", () => {
+    if (cartContainer.classList.contains("active")) {
+        cartContainer.classList.remove("active");
+        cartBtn.setAttribute("aria-expanded", "false");
+    } else {
+        cartContainer.classList.add("active");
+        cartBtn.setAttribute("aria-expanded", "true");
+    }
 });
 
 
@@ -141,6 +145,7 @@ function updateTotalQty() {
     });
 
     cartCount.textContent = totalQty;
+    cartBtn.setAttribute("aria-label", `Cart, ${totalQty} items`);
 }
 
 function removeItemFromCart(cartItem) {
@@ -170,7 +175,7 @@ function addItemToCart(name, price, imgSrc) {
                 </p>
             </div>
         </div>
-        <button class="delete-item">
+        <button class="delete-item" aria-label="Remove item">
             <img src="images/icon-delete.svg" alt=""/>
         </button>
     `

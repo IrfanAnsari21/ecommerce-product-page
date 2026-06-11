@@ -137,20 +137,22 @@ body {
     width: 100%;
 }
 
-.gallery .thumb-list div {
+.gallery .thumb-list button {
+    border: none;
+    background: none;
     max-width: 90px;
     max-height: 90px;
     margin: 0 2px;
 }
 
-.gallery .thumb-list div img {
+.gallery .thumb-list button img {
     width: 100%;
     height: 100%;
     border-radius: 0.5rem;
     cursor: pointer;
 }
 
-.gallery .thumb-list div img:hover {
+.gallery .thumb-list button img:hover {
     opacity: 50%;
 }
 
@@ -192,6 +194,8 @@ body {
 
 .lightbox .icon-prev,
 .lightbox .icon-next {
+    border: none;
+    background: none;
     position: absolute;
     background-color: var(--White);
     width: 50px;
@@ -220,6 +224,8 @@ body {
 }
 
 .lightbox .icon-close {
+    border: none;
+    background: none;
     position: absolute;
     right: 0;
     top: -2.5rem;
@@ -317,6 +323,11 @@ body {
     display: flex;
     align-items: center;
     height: 50%;
+    cursor: pointer;
+}
+
+.add-to-cart-container .counter button:hover {
+    opacity: 50%;
 }
 
 .add-to-cart-container .counter .count {
@@ -336,6 +347,12 @@ body {
     border-radius: 0.5rem;
     font-weight: 800;
     font-size: 1rem;
+    font-family: 'Kumbh Sans', sans-serif;
+    cursor: pointer;
+}
+
+.add-to-cart-container .add-to-cart-btn:hover {
+    opacity: 50%;
 }
 
 /* Cart */
@@ -343,7 +360,9 @@ body {
     position: relative;
 }
 
-.cart-icon {
+.cart-btn {
+    border: none;
+    background: none;
     cursor: pointer;
 }
 
@@ -403,6 +422,12 @@ body {
     color: var(--Very-dark-blue);
     font-weight: 800;
     font-size: 1rem;
+    font-family: 'Kumbh Sans', sans-serif;
+    cursor: pointer;
+}
+
+.checkout:hover {
+    opacity: 50%;
 }
 
 .checkout.empty {
@@ -446,14 +471,10 @@ body {
 .delete-item {
     border: none;
     background: none;
-}
-
-button {
-    font-family: 'Kumbh Sans', sans-serif;
     cursor: pointer;
 }
 
-button:hover {
+.delete-item:hover {
     opacity: 50%;
 }
 
@@ -507,12 +528,21 @@ button:hover {
         transition: left 0.5s ease, opacity 0.3s ease;
     }
 
-    .close-icon {
-        margin-bottom: 2rem;
+    .nav-links.active {
+        left: 0;
+        opacity: 1;
+    }
+    
+    .open-menu {
+        border: none;
+        background: none;
         cursor: pointer;
     }
-
-    .menu-icon {
+    
+    .close-menu {
+        border: none;
+        background: none;
+        margin-bottom: 2rem;
         cursor: pointer;
     }
 
